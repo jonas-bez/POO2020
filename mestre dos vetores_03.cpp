@@ -51,14 +51,16 @@ void vet_rmi(vector<int>& vet, int value){
 //insere no indice um valor  
 int vet_ins(vector<int>& vet, int indice, int value){
     
-    if(indice<0){
+    if(vet.size()==indice){
+        vet.push_back(value);
+        return 0;
+    }else if(indice > vet.size()-1 || indice < 0){
         cout<<"não pode inserir"<<endl;
         return 0;
     }else{
-        vet.insert(vet.begin(),indice, value);
+        vet.insert(vet.begin()+indice, value);
+        return 0;
     }
-    
-    
 }
 
 //remove todos os elementos com aquele valor 
@@ -107,8 +109,8 @@ int main(){
             ss>>value;
             vet_rmi(vet, value);
         }else if(cmd == "ins"){
-            int indice, value;
-            ss<<indice<<value;
+            int indice=0, value=0;
+            ss>>indice>>value;
             vet_ins(vet,indice,value);
         }else if(cmd == "rma"){
             int value;
